@@ -28,7 +28,7 @@
         <dependency>
             <groupId>io.codearte.accurest</groupId>
             <artifactId>accurest-test-deps</artifactId>
-            <version>0.1</version>
+            <version>0.2</version>
             <type>pom</type>
             <scope>test</scope>
         </dependency>
@@ -44,7 +44,7 @@
             <dependency>
                 <groupId>io.codearte.accurest</groupId>
                 <artifactId>accurest-test-deps</artifactId>
-                <version>0.1</version>
+                <version>0.2</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -65,7 +65,7 @@
             <plugin>
                 <groupId>io.codearte.accurest</groupId>
                 <artifactId>accurest-maven-plugin</artifactId>
-                <version>0.1</version>
+                <version>0.2</version>
                 <executions>
                     <execution>
                         <goals>
@@ -76,6 +76,7 @@
                 </executions>
                 <configuration>
                     <basePackageForTests>hello</basePackageForTests>
+                    <baseClassForTests>hello.BaseAccurest</baseClassForTests>
                 </configuration>
             </plugin>
             <plugin>
