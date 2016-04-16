@@ -18,49 +18,47 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.1.3</version>
         </dependency>
 
-        <!-- accurest deps -->
-        <dependency>
-            <groupId>org.spockframework</groupId>
-            <artifactId>spock-core</artifactId>
-            <version>1.0-groovy-2.4</version>
-        </dependency>
+        <!-- accurest test dependencies -->
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>2.9.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>spring-mock-mvc</artifactId>
             <version>2.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock</artifactId>
-            <version>2.0.10-beta</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.toomuchcoding.jsonassert</groupId>
             <artifactId>jsonassert</artifactId>
             <version>0.3.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>2.3.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <properties>
         <java.version>1.8</java.version>
-        <accurest-plugin.version>0.5.4</accurest-plugin.version>
+        <accurest-plugin.version>0.5.6-SNAPSHOT</accurest-plugin.version>
     </properties>
 
 
@@ -78,6 +76,7 @@
                     <execution>
                         <goals>
                             <goal>convert</goal>
+                            <goal>generateStubs</goal>
                             <goal>generateTests</goal>
                         </goals>
                     </execution>
@@ -86,49 +85,6 @@
                     <basePackageForTests>hello</basePackageForTests>
                     <baseClassForTests>hello.BaseAccurest</baseClassForTests>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>io.codearte.accurest</groupId>
-                        <artifactId>stubs-assembly-descriptor</artifactId>
-                        <version>1.1</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>stubs</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.10</version>
-                <executions>
-                    <execution>
-                        <id>add-accurest-test-sources</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-test-sources/accurest</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
