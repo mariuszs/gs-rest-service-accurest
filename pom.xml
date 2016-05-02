@@ -5,7 +5,7 @@
 
     <groupId>org.springframework</groupId>
     <artifactId>gs-rest-service</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -45,20 +45,20 @@
         <dependency>
             <groupId>com.toomuchcoding.jsonassert</groupId>
             <artifactId>jsonassert</artifactId>
-            <version>0.3.0</version>
+            <version>0.4.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>2.3.0</version>
+            <version>2.4.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <properties>
         <java.version>1.8</java.version>
-        <accurest-plugin.version>0.5.6-SNAPSHOT</accurest-plugin.version>
+        <accurest-plugin.version>0.6.5</accurest-plugin.version>
     </properties>
 
     <build>
@@ -71,7 +71,9 @@
                 <groupId>io.codearte.accurest</groupId>
                 <artifactId>accurest-maven-plugin</artifactId>
                 <version>${accurest-plugin.version}</version>
-                <executions>
+                <extensions>true</extensions>
+                <!-- Executed by default - strange maven behaviour? -->
+                <!--<executions>
                     <execution>
                         <goals>
                             <goal>convert</goal>
@@ -79,10 +81,11 @@
                             <goal>generateTests</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions>-->
                 <configuration>
                     <basePackageForTests>hello</basePackageForTests>
                     <baseClassForTests>hello.BaseAccurest</baseClassForTests>
+                    <stubs>com.devskiller:workspace-agent</stubs>
                 </configuration>
             </plugin>
         </plugins>
